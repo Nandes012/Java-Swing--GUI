@@ -2,17 +2,38 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Tensura extends JFrame {
+    private final JPanel cardPanel;
+    private final CardLayout cardLayout;
+
     public Tensura() {
         setTitle("Tensura Characters List");
         setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        add(new Sidebar(), BorderLayout.WEST);
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+
+        // Add all your panels here
+        cardPanel.add(new CharacterGrid(), "Home");
+        cardPanel.add(new JPanel(), "Race"); // Placeholder - replace with actual panel
+        cardPanel.add(new JPanel(), "EP"); // Placeholder
+        cardPanel.add(new JPanel(), "Skills"); // Placeholder
+        cardPanel.add(new JPanel(), "Equipment"); // Placeholder
+        cardPanel.add(new EquipmentPanel(), "Equipment");
+        cardPanel.add(new JPanel(), "Residence"); // Placeholder
+        cardPanel.add(new JPanel(), "Gallery"); // Placeholder
+        cardPanel.add(new JPanel(), "Settings"); // Placeholder
+
+        add(new Sidebar(this), BorderLayout.WEST);
         add(new Header(), BorderLayout.NORTH);
-        add(new CharacterGrid(), BorderLayout.CENTER);
+        add(cardPanel, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public void showPage(String name) {
+        cardLayout.show(cardPanel, name);
     }
 
     public static void main(String[] args) {
