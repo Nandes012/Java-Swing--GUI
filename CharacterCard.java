@@ -6,14 +6,29 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class CharacterCard extends JPanel {
-    public CharacterCard(String name, String filename) {
+    private String name;
+    private String filename;
+    private String description;
+    private String descriptionType;
+
+    // Constructor for 3 parameters (name, filename, description)
+    public CharacterCard(String name, String filename, String description) {
+        this(name, filename, description, "equipment"); // Default descriptionType
+    }
+
+    // Constructor for 4 parameters (name, filename, description, descriptionType)
+    public CharacterCard(String name, String filename, String description, String descriptionType) {
+        this.name = name;
+        this.filename = filename;
+        this.description = description;
+        this.descriptionType = descriptionType;
+
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.GRAY, 4));
         setPreferredSize(new Dimension(220, 400));
 
-        // Use ImagePanel directly
+        // Load image
         ImagePanel imagePanel = new ImagePanel();
-
         try {
             BufferedImage originalImage = ImageIO.read(new File("Images/" + filename));
             if (originalImage != null) {
@@ -36,14 +51,54 @@ public class CharacterCard extends JPanel {
 
         add(imagePanel, BorderLayout.CENTER);
         add(nameLabel, BorderLayout.SOUTH);
+
+        // Mouse listener for popup
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                showPopup();
+            }
+        });
     }
 
-    // Fully implement the ImagePanel class
-    private static class ImagePanel extends JPanel {
-        private Image image;
+    private void showPopup() {
+        String message;
+        switch (descriptionType) {
+        case "Equipment":
+            message = "Name: " + name + "\nEquipment: " + description;
+            break;
+        case "Race":
+            message = "Name: " + name + "\nRace: " + description;
+            break;
+        case "EP":
+            message = "Name: " + name + "\nEP: " + description;
+            break;
+        case "Skills":
+            message = "Name: " + name + "\nSkills: " + description;
+            break;
+        case "Residence":
+            message = "Name: " + name + "\nResidence: " + description;
+            break;
+        case "Gallery":
+            message = "Name: " + name + "\nGallery: " + description;
+            break;
+        case "Settings":
+            message = "Name: " + name + "\nSettings: " + description;
+            break;
+        default:
+            message = "Name: " + name + "\nCharacter: " + description;
+            break;
+    }
 
-        public void setImage(Image img) {
-            this.image = img;
+    JOptionPane.showMessageDialog(this, message, "Details", JOptionPane.INFORMATION_MESSAGE);
+}
+
+    // ImagePanel class remains the same
+    private static class ImagePanel extends JPanel {
+        private BufferedImage image;
+
+        public void setImage(BufferedImage image) {
+            this.image = image;
             repaint();
         }
 
@@ -51,27 +106,7 @@ public class CharacterCard extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             if (image != null) {
-                int panelWidth = getWidth();
-                int panelHeight = getHeight();
-
-                double imgRatio = (double) image.getWidth(null) / image.getHeight(null);
-                double panelRatio = (double) panelWidth / panelHeight;
-
-                int width, height;
-                if (panelRatio > imgRatio) {
-                    height = panelHeight;
-                    width = (int) (height * imgRatio);
-                } else {
-                    width = panelWidth;
-                    height = (int) (width / imgRatio);
-                }
-
-                int x = (panelWidth - width) / 2;
-                int y = (panelHeight - height) / 2;
-
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g2d.drawImage(image, x, y, width, height, null);
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
         }
     }

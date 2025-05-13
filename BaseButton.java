@@ -1,6 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-
 public abstract class BaseButton extends JButton {
     public BaseButton(String text) {
         super(text);

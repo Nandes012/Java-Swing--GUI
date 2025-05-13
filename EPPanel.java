@@ -2,8 +2,8 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class CharacterGrid extends JPanel {
-    public CharacterGrid() {
+public class EPPanel extends JPanel {
+    public EPPanel() {
         setLayout(new GridBagLayout());
         setBackground(new Color(245, 245, 245));
         
@@ -47,23 +47,22 @@ public class CharacterGrid extends JPanel {
     
     private void addCharacterCard(JPanel panel, String name, String filename) {
         String description = switch (name) {
-            case "Rimuru Tempest" -> "Not a bad slime";
-            case "Ciel" -> "Rimuru's 'Wife' Partner";
-            case "Chloe" -> "Would go through countless loops to save Rimuru";
-            case "Diablo" -> "Very loyal and fanatical to Rimuru";
-            case "Ultima" -> "Loyal to Rimuru";
-            case "Testarossa" -> "Loyal to Rimuru";
-            case "Carrera" -> "Loyal to Rimuru";
-            case "Guy" -> "Very powerful and prideful, strongest demon lord in the anime";
-            case "Velzard" -> "Very powerful and sister of veldora, discipline veldora with violence";
-            case "Veldora" -> "Very powerful and brother of Velzard, loves to read manga, afraid of his sisters";
-            case "Zegion" -> "Loyal to Rimuru, have Rimuru's cell in his body";
-            case "Milim" -> "Very powerful, loves to fight, very childish, BFF with Rimuru";
-            case "Shuna" -> "Loyal to Rimuru, Very Respected among his friends and colleagues, loves to cook";
-            case "Luminous" -> "Powerful, very into woman's body especially Chloe";
-            case "Benimaru" -> "Loyal to Rimuru,powerful, loves to fight, skills are connected with sun god amaterasu";            
+            case "Rimuru Tempest" -> "171,157,789";
+            case "Ciel" -> "171,157,789";
+            case "Chloe" -> "171,157,789";
+            case "Diablo" -> "6,666,666(Real Value Hidden)";
+            case "Ultima" -> "2,668,816";
+            case "Testarossa" -> "3,333,124";
+            case "Carrera" -> "7,013,351";
+            case "Guy" -> "40,000,000-";
+            case "Velzard" -> "80,000,000+";
+            case "Veldora" -> "88,126,579";
+            case "Zegion" -> "4,988,856";
+            case "Milim" -> "100,000,000+";
+            case "Luminous" -> "5,000,000";
+            case "benimaru" -> "4,397,788";
             default -> "Unknown";
         };
-        panel.add(new CharacterCard(name, filename, description,"character"));
+        panel.add(new CharacterCard(name, filename, description, "EP"));
     }
 }

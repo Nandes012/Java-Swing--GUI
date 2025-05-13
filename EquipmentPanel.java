@@ -11,21 +11,21 @@ public class EquipmentPanel extends JPanel {
         gridPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         // Add weapon cards
-        addWeaponCard(gridPanel, "Draconic Sword", "sword_light.jpg");
-        addWeaponCard(gridPanel, "Scissors", "demon_blade.jpg");
-        addWeaponCard(gridPanel, "Moon Mistress", "phoenix_bow.jpg");
-        addWeaponCard(gridPanel, "Stygian Voidlash", "dragon_slayer.jpg");
-        addWeaponCard(gridPanel, "Staff of Wisdom", "staff_wisdom.jpg");
-        addWeaponCard(gridPanel, "Assassin Dagger", "assassin_dagger.jpg");
-        addWeaponCard(gridPanel, "Holy Mace", "holy_mace.jpg");
-        addWeaponCard(gridPanel, "Frost Axe", "frost_axe.jpg");
-        addWeaponCard(gridPanel, "Thunder Hammer", "thunder_hammer.jpg");
-        addWeaponCard(gridPanel, "Void Scythe", "void_scythe.jpg");
-        addWeaponCard(gridPanel, "Sun Spear", "sun_spear.jpg");
-        addWeaponCard(gridPanel, "Moon Katana", "moon_katana.jpg");
-        addWeaponCard(gridPanel, "Blood Whip", "blood_whip.jpg");
-        addWeaponCard(gridPanel, "Titan Gauntlets", "titan_gauntlets.jpg");
-        addWeaponCard(gridPanel, "Necro Tome", "necro_tome.jpg");
+        addCharacterCard(gridPanel, "Drago Blade", "Drago-Blade.jpg");
+        addCharacterCard(gridPanel, "Scissors", "Scissors.jpeg");
+        addCharacterCard(gridPanel, "Moonlight", "Moonlight.jpg");
+        addCharacterCard(gridPanel, "Stygian Voidlash", "Stygian_Voidlash.jpg");
+        addCharacterCard(gridPanel, "White Progenitor's Bracelet", "White_Progenitor_Bracelet.jpg");
+        addCharacterCard(gridPanel, "Golden Gun", "Golden_Gun.jpeg");
+        addCharacterCard(gridPanel, "World", "World.jpg");
+        addCharacterCard(gridPanel, "Frost Axe", "frost_axe.jpg");
+        addCharacterCard(gridPanel, "Thunder Hammer", "thunder_hammer.jpg");
+        addCharacterCard(gridPanel, "Void Scythe", "void_scythe.jpg");
+        addCharacterCard(gridPanel, "Sun Spear", "sun_spear.jpg");
+        addCharacterCard(gridPanel, "Moon Katana", "moon_katana.jpg");
+        addCharacterCard(gridPanel, "Blood Whip", "blood_whip.jpg");
+        addCharacterCard(gridPanel, "Titan Gauntlets", "titan_gauntlets.jpg");
+        addCharacterCard(gridPanel, "Necro Tome", "necro_tome.jpg");
         
         // Empty panel for the 16th cell
         gridPanel.add(new JPanel());
@@ -44,7 +44,15 @@ public class EquipmentPanel extends JPanel {
         add(scrollPane, gbc);
     }
     
-    private void addWeaponCard(JPanel panel, String name, String filename) {
-        panel.add(new CharacterCard(name, filename));
+    private void addCharacterCard(JPanel panel, String name, String filename) {
+        String description = switch (name) {
+            case "Draconic Sword" -> "A sword forged from dragon scales.";
+            case "Scissors" -> "A pair of scissors with a sharp edge.";
+            case "Moon Mistress" -> "A bow that channels lunar energy.";
+            case "Stygian Voidlash" -> "A whip that can cut through darkness.";
+            case "Staff of Wisdom" -> "A staff that enhances magical abilities.";
+            default-> "Unknown Weapon";
+        };
+        panel.add(new CharacterCard(name, filename, description, "Equipment"));
     }
 }

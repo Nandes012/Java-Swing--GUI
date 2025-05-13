@@ -2,8 +2,8 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class CharacterGrid extends JPanel {
-    public CharacterGrid() {
+public class SkillsPanel extends JPanel {
+    public SkillsPanel() {
         setLayout(new GridBagLayout());
         setBackground(new Color(245, 245, 245));
         
@@ -47,23 +47,9 @@ public class CharacterGrid extends JPanel {
     
     private void addCharacterCard(JPanel panel, String name, String filename) {
         String description = switch (name) {
-            case "Rimuru Tempest" -> "Not a bad slime";
-            case "Ciel" -> "Rimuru's 'Wife' Partner";
-            case "Chloe" -> "Would go through countless loops to save Rimuru";
-            case "Diablo" -> "Very loyal and fanatical to Rimuru";
-            case "Ultima" -> "Loyal to Rimuru";
-            case "Testarossa" -> "Loyal to Rimuru";
-            case "Carrera" -> "Loyal to Rimuru";
-            case "Guy" -> "Very powerful and prideful, strongest demon lord in the anime";
-            case "Velzard" -> "Very powerful and sister of veldora, discipline veldora with violence";
-            case "Veldora" -> "Very powerful and brother of Velzard, loves to read manga, afraid of his sisters";
-            case "Zegion" -> "Loyal to Rimuru, have Rimuru's cell in his body";
-            case "Milim" -> "Very powerful, loves to fight, very childish, BFF with Rimuru";
-            case "Shuna" -> "Loyal to Rimuru, Very Respected among his friends and colleagues, loves to cook";
-            case "Luminous" -> "Powerful, very into woman's body especially Chloe";
-            case "Benimaru" -> "Loyal to Rimuru,powerful, loves to fight, skills are connected with sun god amaterasu";            
+            case "Rimuru Tempest" -> "Ultimate: Azathoth,Shub Niggurath,\n Unique:";
             default -> "Unknown";
         };
-        panel.add(new CharacterCard(name, filename, description,"character"));
+        panel.add(new CharacterCard(name, filename, description, "Skills"));
     }
 }
